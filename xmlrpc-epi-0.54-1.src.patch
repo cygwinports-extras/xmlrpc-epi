@@ -1,0 +1,50 @@
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x aclocal.m4 -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/xmlrpc-epi-0.54/configure.in src/xmlrpc-epi-0.54/configure.in
+--- origsrc/xmlrpc-epi-0.54/configure.in	2008-04-16 05:38:01.000000000 -0500
++++ src/xmlrpc-epi-0.54/configure.in	2008-05-07 16:29:23.734375000 -0500
+@@ -3,8 +3,6 @@
+ AC_INIT(src/xmlrpc.h)
+ AM_INIT_AUTOMAKE(xmlrpc, 0.54)
+ 
+-AM_PROG_LIBTOOL
+-
+ dnl Checks for programs.
+ AC_PROG_AWK
+ AC_PROG_CC
+@@ -52,7 +50,7 @@
+ AC_FUNC_STRFTIME
+ 
+ AC_CHECK_FUNCS(mktime strstr)
++AC_CHECK_FUNC(iconv,[],[AC_CHECK_LIB(iconv,libiconv,[],[AC_MSG_ERROR([Sorry libiconv not found, please ensure libiconv/libiconv-dev is installed])])])
+ 
+-AC_OUTPUT()
+ AC_OUTPUT(src/Makefile Makefile sample/Makefile)
+ 
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x aclocal.m4 -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/xmlrpc-epi-0.54/sample/Makefile.am src/xmlrpc-epi-0.54/sample/Makefile.am
+--- origsrc/xmlrpc-epi-0.54/sample/Makefile.am	2008-04-14 07:05:49.000000000 -0500
++++ src/xmlrpc-epi-0.54/sample/Makefile.am	2008-05-07 16:35:43.734375000 -0500
+@@ -1,7 +1,7 @@
+ 
+-INCLUDES=-I../src $(EXTRA_INCLUDES) 
++INCLUDES=-I$(top_srcdir)/src $(EXTRA_INCLUDES) 
+ 
+-bin_PROGRAMS = sample client server server_compliance_test memtest hello_client hello_server
++noinst_PROGRAMS = sample client server server_compliance_test memtest hello_client hello_server
+ 
+ sample_SOURCES = sample.c
+ sample_LDADD = -L@prefix@/lib ../src/libxmlrpc-epi.la
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x aclocal.m4 -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/xmlrpc-epi-0.54/src/Makefile.am src/xmlrpc-epi-0.54/src/Makefile.am
+--- origsrc/xmlrpc-epi-0.54/src/Makefile.am	2008-04-16 05:38:07.000000000 -0500
++++ src/xmlrpc-epi-0.54/src/Makefile.am	2008-05-07 19:07:45.453125000 -0500
+@@ -16,9 +16,9 @@
+ 	xmlrpc_introspection.c \
+         system_methods.c
+         
+-libxmlrpc_epi_la_LDFLAGS = -version-info 0:3:0
+-libxmlrpc_epi_incdir=$(includedir)/xmlrpc-epi 
+-include_HEADERS = \
++libxmlrpc_epi_la_LDFLAGS = -version-info 0:3:0 -no-undefined
++libxmlrpc_epi_incdir=$(includedir)/xmlrpc-epi
++libxmlrpc_epi_inc_HEADERS = \
+ 	base64.h \
+ 	encodings.h \
+ 	queue.h \

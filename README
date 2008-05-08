@@ -1,0 +1,86 @@
+xmlrpc-epi
+------------------------------------------
+xmlrpc-epi is an implementation of the xmlrpc protocol in C. It provides 
+an easy to use API for developers to serialize RPC requests to and from 
+XML. It does *not* include a transport layer, such as HTTP. The API is 
+primarily based upon proprietary code written for internal usage at 
+Epinions.com, and was later modified to incorporate concepts from the 
+xmlrpc protocol. It passed the xmlrpc validation test suite in December 
+2000.
+
+Runtime requirements:
+  cygwin-1.5.25-11
+  libexpat1-2.0.1-1
+  libiconv2-1.11-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf2.5-2.61-1
+  automake1.10-1.10.1-1
+  binutils-20060817-1
+  cygport-0.3.9-1
+  gawk-3.1.6-1
+  gcc-core-3.4.4-3
+  libtool-2.2.2-2
+  make-3.81-1
+  sed-4.1.5-2
+
+Canonical website:
+  http://xmlrpc-epi.sourceforge.net/
+
+Canonical download:
+  http://sourceforge.net/projects/xmlrpc-epi/files
+
+-------------------------------------------
+
+Build instructions:
+  unpack xmlrpc-epi-0.54-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./xmlrpc-epi-0.54-X.cygport all
+
+This will create:
+  /usr/src/libxmlrpc-epi-devel-0.54-X.tar.bz2
+  /usr/src/libxmlrpc-epi0-0.54-X.tar.bz2
+  /usr/src/xmlrpc-epi-0.54-X-src.tar.bz2
+  /usr/src/xmlrpc-epi-0.54-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary packages:
+
+(xmlrpc-epi)
+  /usr/share/doc/xmlrpc-epi-0.54/AUTHORS
+  /usr/share/doc/xmlrpc-epi-0.54/COPYING
+  /usr/share/doc/xmlrpc-epi-0.54/ChangeLog
+  /usr/share/doc/xmlrpc-epi-0.54/INSTALL
+  /usr/share/doc/xmlrpc-epi-0.54/NEWS
+  /usr/share/doc/xmlrpc-epi-0.54/README
+
+(libxmlrpc-epi0)
+  /usr/bin/cygxmlrpc-epi-0.dll
+
+(libxmlrpc-epi-devel)
+  /usr/include/xmlrpc-epi/base64.h
+  /usr/include/xmlrpc-epi/encodings.h
+  /usr/include/xmlrpc-epi/queue.h
+  /usr/include/xmlrpc-epi/simplestring.h
+  /usr/include/xmlrpc-epi/xml_element.h
+  /usr/include/xmlrpc-epi/xml_to_xmlrpc.h
+  /usr/include/xmlrpc-epi/xmlrpc.h
+  /usr/include/xmlrpc-epi/xmlrpc_introspection.h
+  /usr/lib/libxmlrpc-epi.a
+  /usr/lib/libxmlrpc-epi.dll.a
+  /usr/lib/libxmlrpc-epi.la
+
+------------------
+
+Port Notes:
+
+----- version 0.54-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://cygwinports.dotsrc.org/
