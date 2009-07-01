@@ -1,7 +1,7 @@
 category: Libs
-requires: libexpat1 libiconv2
+requires: libxmlrpc-epi0 libexpat1-devel libiconv
 external-source: xmlrpc-epi
-sdesc: "XML-RPC C library (runtime)"
+sdesc: "XML-RPC C library (libdevel)"
 ldesc: "xmlrpc-epi is an implementation of the xmlrpc protocol in C. It 
 provides an easy to use API for developers to serialize RPC requests to 
 and from XML. It does *not* include a transport layer, such as HTTP. The 

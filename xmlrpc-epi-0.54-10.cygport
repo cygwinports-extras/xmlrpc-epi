@@ -1,0 +1,10 @@
+DESCRIPTION="XML-RPC protocol library"
+HOMEPAGE="http://xmlrpc-epi.sourceforge.net/"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+PATCH_URI="0.54-build.patch"
+
+PKG_NAMES="${PN} lib${PN}0 lib${PN}-devel"
+libxmlrpc_epi0_CONTENTS="usr/bin/cyg${PN}-0.dll usr/share/doc/"
+libxmlrpc_epi_devel_CONTENTS="usr/include/ usr/lib/"
+
+CYGCONF_ARGS="--with-expat=/usr"
