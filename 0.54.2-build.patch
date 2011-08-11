@@ -1,0 +1,46 @@
+--- origsrc/xmlrpc-epi-0.54.2/configure.in	2011-04-09 16:04:20.000000000 -0500
++++ src/xmlrpc-epi-0.54.2/configure.in	2011-08-11 18:21:08.419233600 -0500
+@@ -4,8 +4,6 @@ AC_INIT
+ AC_CONFIG_SRCDIR([src/xmlrpc.h])
+ AM_INIT_AUTOMAKE(xmlrpc, 0.54.2)
+ 
+-LT_INIT
+-
+ dnl Checks for programs.
+ AC_PROG_AWK
+ AC_PROG_CC
+@@ -55,7 +53,6 @@ AC_FUNC_STRFTIME
+ 
+ AC_CHECK_FUNCS(mktime strstr)
+ 
+-AC_OUTPUT
+ AC_CONFIG_FILES([src/Makefile Makefile sample/Makefile])
+ AC_OUTPUT
+ 
+--- origsrc/xmlrpc-epi-0.54.2/sample/Makefile.am	2011-04-09 15:55:08.000000000 -0500
++++ src/xmlrpc-epi-0.54.2/sample/Makefile.am	2011-08-11 18:16:51.533540600 -0500
+@@ -1,7 +1,7 @@
+ 
+-AM_CPPFLAGS=-I../src $(EXTRA_INCLUDES) 
++AM_CPPFLAGS=-I$(top_srcdir)/src $(EXTRA_INCLUDES) 
+ 
+-bin_PROGRAMS = sample client server server_compliance_test memtest hello_client hello_server
++noinst_PROGRAMS = sample client server server_compliance_test memtest hello_client hello_server
+ 
+ sample_SOURCES = sample.c
+ sample_LDADD = -L@prefix@/lib ../src/libxmlrpc-epi.la
+--- origsrc/xmlrpc-epi-0.54.2/src/Makefile.am	2011-04-09 15:59:52.000000000 -0500
++++ src/xmlrpc-epi-0.54.2/src/Makefile.am	2011-08-11 18:18:04.091690700 -0500
+@@ -14,9 +14,9 @@ libxmlrpc_epi_la_SOURCES = \
+ 	xmlrpc_introspection.c \
+         system_methods.c
+ 
+-libxmlrpc_epi_la_LDFLAGS = -version-info 0:3:0
+-libxmlrpc_epi_incdir=$(includedir)/xmlrpc-epi 
+-include_HEADERS = \
++libxmlrpc_epi_la_LDFLAGS = -version-info 0:3:0 -no-undefined
++libxmlrpc_epi_incdir=$(includedir)/xmlrpc-epi
++libxmlrpc_epi_inc_HEADERS = \
+ 	base64.h \
+ 	encodings.h \
+ 	queue.h \
